@@ -6,6 +6,7 @@ import { Plugin as importToCDN } from 'vite-plugin-cdn-import'
 import { fileURLToPath, URL } from 'node:url'
 import { getLastCommit } from 'git-last-commit'
 import VueMacros from 'unplugin-vue-macros/vite'
+import { resolve } from 'path'
 
 const lifecycle = process.env.npm_lifecycle_event
 
@@ -175,7 +176,7 @@ export default defineConfig((): Promise<UserConfig> => {
         },
         preview: {
           port: 5555
-        }
+        },
       })
     })
   })

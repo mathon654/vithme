@@ -39,7 +39,7 @@
       </div>
     </div>
     <div
-      class="sub-type-notice"
+      class="sub-type-notice text-red-950"
       v-if="state.subType === -1 && !state.subTypeVisible"
       @click="showSubType"
     >
@@ -183,7 +183,6 @@ onUnmounted(() => {})
     border-radius: 10rem;
     z-index: 3;
     font-size: 12rem;
-    color: white;
   }
 }
 </style>
