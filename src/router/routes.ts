@@ -184,6 +184,14 @@ const routes: RouteRecordRaw[] = [
     path: '/set-remark',
     component: () => import('@/pages/message/SetRemark.vue')
   },
+  {
+    path: '/register',
+    component: () => import('@/pages/register/index.vue')
+  },
+  {
+    path: '/profile',
+    component: () => import('@/pages/profile/index.vue')
+  },
 
   // {path: '/login', component: Login},
   { path: '/login', component: () => import('@/pages/login/Login.vue') },
