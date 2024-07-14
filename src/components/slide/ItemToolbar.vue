@@ -46,6 +46,10 @@ function attention(e) {
 function showComments() {
   bus.emit(EVENT_KEY.OPEN_COMMENTS, props.item.aweme_id)
 }
+function showGift() {
+  console.log('showGift')
+  bus.emit(EVENT_KEY.SHOW_GIFT, props.item.aweme_id)
+}
 
 const vClick = useClick()
 </script>
@@ -66,34 +70,29 @@ const vClick = useClick()
         </div>
       </transition>
     </div>
-    <div class="love mb2r" v-click="loved">
-      <div>
-        <img src="../../assets/img/icon/love.svg" class="love-image" v-if="!item.isLoved" />
-        <img src="../../assets/img/icon/loved.svg" class="love-image" v-if="item.isLoved" />
-      </div>
+    <div class="flex flex-col" v-click="loved">
+      <img src="../../assets/img/home/home_love_n.png" class="love-image" v-if="!item.isLoved" />
+      <img src="../../assets/img/home/home_love_p.png" class="love-image" v-if="item.isLoved" />
       <span>{{ _formatNumber(item.statistics.digg_count) }}</span>
     </div>
-    <div class="message mb2r" v-click="showComments">
-      <Icon icon="mage:message-dots-round-fill" class="icon" style="color: white" />
+    <!--    礼物-->
+    <div class="message" v-click="showGift">
+      <img src="../../assets/img/home/home_liwu.png" class="icon" alt="" />
       <span>{{ _formatNumber(item.statistics.comment_count) }}</span>
     </div>
-    <!--TODO     -->
-    <div class="message mb2r" v-click="() => _updateItem(props, 'isCollect', !item.isCollect)">
-      <Icon
-        v-if="item.isCollect"
-        icon="ic:round-star"
-        class="icon"
-        style="color: rgb(252, 179, 3)"
-      />
-      <Icon v-else icon="ic:round-star" class="icon" style="color: white" />
+    <!--    评论-->
+
+    <div class="message" v-click="showComments">
+      <img src="../../assets/img/home/home_pinglun.png" class="icon" alt="" />
       <span>{{ _formatNumber(item.statistics.comment_count) }}</span>
     </div>
-    <div v-if="!props.isMy" class="share mb2r" v-click="() => bus.emit(EVENT_KEY.SHOW_SHARE)">
-      <img src="../../assets/img/icon/share-white-full.png" alt="" class="share-image" />
+
+    <div v-if="!props.isMy" class="share" v-click="() => bus.emit(EVENT_KEY.SHOW_SHARE)">
+      <img src="../../assets/img/home/home_fenxiang.png" alt="" class="icon" />
       <span>{{ _formatNumber(item.statistics.share_count) }}</span>
     </div>
     <div v-else class="share mb2r" v-click="() => bus.emit(EVENT_KEY.SHOW_SHARE)">
-      <img src="../../assets/img/icon/menu-white.png" alt="" class="share-image" />
+      <img src="../../assets/img/icon/menu-white.png" alt="" class="icon" />
     </div>
     <!--    <BaseMusic-->
     <!--        :cover="item.music.cover"-->
@@ -107,7 +106,7 @@ const vClick = useClick()
 .toolbar {
   //width: 40px;
   position: absolute;
-  bottom: 0;
+  bottom: 120rem;
   right: 10rem;
   color: #fff;
   display: flex;
@@ -170,28 +169,32 @@ const vClick = useClick()
     }
   }
 
-  .love,
-  .message,
+  .love-image {
+    width: 28rem;
+    height: 28rem;
+  }
+  .message {
+    display: flex;
+    flex-direction: column;
+  }
+  span {
+    font-size: 10rem;
+    margin-top: 5rem;
+  }
+
   .share {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    @width: 35rem;
-
-    img {
-      width: @width;
-      height: @width;
-    }
-
-    span {
-      font-size: 12rem;
-    }
+    margin-bottom: 10rem;
+    margin-top: 0;
   }
 
   .icon {
-    font-size: 40rem;
+    width: 30rem;
+    height: 30rem;
+    margin-top: 10rem;
   }
 
   .loved {

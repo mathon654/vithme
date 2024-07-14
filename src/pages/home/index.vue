@@ -2,99 +2,99 @@
   <div class="test-slide-wrapper" id="home-index">
     <SlideHorizontal name="first" v-model:index="state.baseIndex">
       <SlideItem class="sidebar">
-        <div class="header">
-          <div class="left">下午好</div>
-          <div class="right" @click="nav('/home/live')">
-            <Icon icon="iconamoon:scanner" />
-            <span>扫一扫</span>
-          </div>
-        </div>
-        <div class="card">
-          <div class="header">
-            <div class="left">常用小程序</div>
-            <div class="right">
-              <span>全部</span>
-              <Icon icon="icon-park-outline:right" />
-            </div>
-          </div>
-          <div class="content">
-            <div class="item" @click="_no">
-              <img
-                class="xcx"
-                src="https://lf3-static.bytednsdoc.com/obj/eden-cn/pipieh7nupabozups/toutiao_web_pc/tt-icon.png"
-                alt=""
-              />
-              <span>今日头条</span>
-            </div>
-            <div class="item" @click="_no">
-              <img
-                class="xcx"
-                src="https://gd-hbimg.huaban.com/65130a3e6a139530bb03bd118e21a2603af7df4e1303b-OOzcBu_fw658webp"
-                alt=""
-              />
-              <span>西瓜视频</span>
-            </div>
-          </div>
-        </div>
+        <!--        <div class="header">-->
+        <!--          <div class="left">下午好</div>-->
+        <!--          <div class="right" @click="nav('/home/live')">-->
+        <!--            <Icon icon="iconamoon:scanner" />-->
+        <!--            <span>扫一扫</span>-->
+        <!--          </div>-->
+        <!--        </div>-->
+        <!--        <div class="card">-->
+        <!--          <div class="header">-->
+        <!--            <div class="left">常用小程序</div>-->
+        <!--            <div class="right">-->
+        <!--              <span>全部</span>-->
+        <!--              <Icon icon="icon-park-outline:right" />-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--          <div class="content">-->
+        <!--            <div class="item" @click="_no">-->
+        <!--              <img-->
+        <!--                class="xcx"-->
+        <!--                src="https://lf3-static.bytednsdoc.com/obj/eden-cn/pipieh7nupabozups/toutiao_web_pc/tt-icon.png"-->
+        <!--                alt=""-->
+        <!--              />-->
+        <!--              <span>今日头条</span>-->
+        <!--            </div>-->
+        <!--            <div class="item" @click="_no">-->
+        <!--              <img-->
+        <!--                class="xcx"-->
+        <!--                src="https://gd-hbimg.huaban.com/65130a3e6a139530bb03bd118e21a2603af7df4e1303b-OOzcBu_fw658webp"-->
+        <!--                alt=""-->
+        <!--              />-->
+        <!--              <span>西瓜视频</span>-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </div>-->
 
-        <div class="card">
-          <div class="header">
-            <div class="left">最近常看</div>
-            <div class="right">
-              <span>全部</span>
-              <Icon icon="icon-park-outline:right" />
-            </div>
-          </div>
-          <div class="content">
-            <div class="item avatar" @click="_no" :key="i" v-for="i in 6">
-              <img
-                src="https://img.tol.vip/avatar/WEIXIN/3aSuTGYTzjHvcHy0y0tH1eiShKRk9Sgd.jpg?_upt=de4a5c251709635127"
-              />
-              <span>随机名字</span>
-            </div>
-          </div>
-        </div>
+        <!--        <div class="card">-->
+        <!--          <div class="header">-->
+        <!--            <div class="left">最近常看</div>-->
+        <!--            <div class="right">-->
+        <!--              <span>全部</span>-->
+        <!--              <Icon icon="icon-park-outline:right" />-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--          <div class="content">-->
+        <!--            <div class="item avatar" @click="_no" :key="i" v-for="i in 6">-->
+        <!--              <img-->
+        <!--                src="https://img.tol.vip/avatar/WEIXIN/3aSuTGYTzjHvcHy0y0tH1eiShKRk9Sgd.jpg?_upt=de4a5c251709635127"-->
+        <!--              />-->
+        <!--              <span>随机名字</span>-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </div>-->
 
-        <div class="card">
-          <div class="header">
-            <div class="left">常用功能</div>
-            <div class="right"></div>
-          </div>
-          <div class="content">
-            <div class="item" @click="_no">
-              <Icon icon="ion:wallet-outline" />
-              <span>我的钱包</span>
-            </div>
-            <div class="item" @click="_no">
-              <Icon icon="mingcute:coupon-line" />
-              <span>券包</span>
-            </div>
-            <div class="item" @click="_no">
-              <Icon icon="icon-park-outline:bytedance-applets" />
-              <span>小程序</span>
-            </div>
-            <div class="item" @click="_no">
-              <Icon icon="solar:history-linear" />
-              <span>观看历史</span>
-            </div>
-            <div class="item" @click="_no">
-              <Icon icon="fluent:content-settings-24-regular" />
-              <span>内容偏好</span>
-            </div>
-            <div class="item" @click="_no">
-              <Icon icon="iconoir:cloud-download" />
-              <span>离线模式</span>
-            </div>
-            <div class="item" @click="_no">
-              <Icon icon="ep:setting" />
-              <span>设置</span>
-            </div>
-            <div class="item" @click="_no">
-              <Icon icon="icon-park-outline:baggage-delay" />
-              <span>稍后再看</span>
-            </div>
-          </div>
-        </div>
+        <!--        <div class="card">-->
+        <!--          <div class="header">-->
+        <!--            <div class="left">常用功能</div>-->
+        <!--            <div class="right"></div>-->
+        <!--          </div>-->
+        <!--          <div class="content">-->
+        <!--            <div class="item" @click="_no">-->
+        <!--              <Icon icon="ion:wallet-outline" />-->
+        <!--              <span>我的钱包</span>-->
+        <!--            </div>-->
+        <!--            <div class="item" @click="_no">-->
+        <!--              <Icon icon="mingcute:coupon-line" />-->
+        <!--              <span>券包</span>-->
+        <!--            </div>-->
+        <!--            <div class="item" @click="_no">-->
+        <!--              <Icon icon="icon-park-outline:bytedance-applets" />-->
+        <!--              <span>小程序</span>-->
+        <!--            </div>-->
+        <!--            <div class="item" @click="_no">-->
+        <!--              <Icon icon="solar:history-linear" />-->
+        <!--              <span>观看历史</span>-->
+        <!--            </div>-->
+        <!--            <div class="item" @click="_no">-->
+        <!--              <Icon icon="fluent:content-settings-24-regular" />-->
+        <!--              <span>内容偏好</span>-->
+        <!--            </div>-->
+        <!--            <div class="item" @click="_no">-->
+        <!--              <Icon icon="iconoir:cloud-download" />-->
+        <!--              <span>离线模式</span>-->
+        <!--            </div>-->
+        <!--            <div class="item" @click="_no">-->
+        <!--              <Icon icon="ep:setting" />-->
+        <!--              <span>设置</span>-->
+        <!--            </div>-->
+        <!--            <div class="item" @click="_no">-->
+        <!--              <Icon icon="icon-park-outline:baggage-delay" />-->
+        <!--              <span>稍后再看</span>-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </div>-->
       </SlideItem>
       <SlideItem>
         <IndicatorHome
@@ -111,7 +111,8 @@
           v-model:index="state.navIndex"
         >
           <!--          <SlideItem></SlideItem>-->
-          <Slide0 :active="state.navIndex === 0 && state.baseIndex === 1" />
+          <Slide4 :active="state.navIndex === 0 && state.baseIndex === 1" />
+          <Slide0 :active="state.navIndex === 4 && state.baseIndex === 1" />
           <SlideItem>
             <LongVideo :active="state.navIndex === 1 && state.baseIndex === 1" />
           </SlideItem>
@@ -120,7 +121,6 @@
           <SlideItem>
             <Community :active="state.navIndex === 3 && state.baseIndex === 1" />
           </SlideItem>
-          <Slide4 :active="state.navIndex === 4 && state.baseIndex === 1" />
         </SlideHorizontal>
 
         <BaseFooter v-bind:init-tab="1" />
@@ -168,7 +168,6 @@
     <PlayFeedback v-model="state.showPlayFeedback" />
 
     <DouyinCode :item="state.currentItem" v-model="state.showDouyinCode" />
-
     <ShareTo
       v-model:type="state.shareType"
       :videoId="state.recommendList[state.itemIndex]?.id"
@@ -196,6 +195,7 @@
     </ConfirmDialog>
 
     <ShareToFriend v-model="state.shareToFriend" />
+    <GiftModal v-if="state.showGift" :list="[{ name: 'gift1' }]" :hidden="hiddenGiftModal" />
 
     <BaseMask v-if="!isMobile" @click="isMobile = true" />
     <div v-if="!isMobile" class="guide">
@@ -222,6 +222,7 @@ import bus, { EVENT_KEY } from '../../utils/bus'
 import { useNav } from '@/utils/hooks/useNav'
 import PlayFeedback from '@/pages/home/components/PlayFeedback.vue'
 import ShareTo from '@/pages/home/components/ShareTo.vue'
+import GiftModal from '@/pages/home/components/GiftModal.vue'
 import DouyinCode from '../../components/DouyinCode.vue'
 import FollowSetting from '@/pages/home/components/FollowSetting.vue'
 import BlockDialog from '../message/components/BlockDialog.vue'
@@ -248,7 +249,7 @@ const isMobile = ref(/Mobi|Android|iPhone/i.test(navigator.userAgent))
 const state = reactive({
   active: true,
   baseIndex: 1,
-  navIndex: 4,
+  navIndex: 0,
   itemIndex: 0,
   test: '',
   recommendList: [],
@@ -265,6 +266,7 @@ const state = reactive({
   showBlockDialog: false,
   showChangeNote: false,
   shareToFriend: false,
+  showGift: false,
 
   commentVisible: false,
   fullScreen: false,
@@ -313,6 +315,11 @@ onMounted(() => {
     bus.emit(EVENT_KEY.EXIT_FULLSCREEN)
     state.commentVisible = false
   })
+  bus.on(EVENT_KEY.SHOW_GIFT, () => {
+    if (!state.active) return
+    console.log('EVENT_KEY.SHOW_GIFT')
+    state.showGift = true
+  })
   bus.on(EVENT_KEY.SHOW_SHARE, () => {
     if (!state.active) return
     state.isSharing = true
@@ -350,6 +357,10 @@ function dislike() {
   // listRef.value.dislike(state.list[1])
   // state.list[state.index] = state.list[1]
   // _notice('操作成功，将减少此类视频的推荐')
+}
+function hiddenGiftModal() {
+  console.log('hiddenGiftModal')
+  state.showGift = false
 }
 </script>
 

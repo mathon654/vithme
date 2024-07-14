@@ -51,7 +51,7 @@ onMounted(() => {
 .music-wrapper {
   display: flex;
   justify-content: center;
-  @w: 45rem;
+  @w: 40rem;
   width: @w;
   height: @w;
   position: relative;
@@ -96,6 +96,7 @@ onMounted(() => {
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-left: -2rem;
     }
 
     &.notice {
@@ -104,11 +105,11 @@ onMounted(() => {
     }
 
     svg {
-      font-size: 22rem;
+      font-size: 20rem;
     }
 
     span {
-      margin-left: 5rem;
+      margin-left: 2rem;
       font-size: 13rem;
       word-break: keep-all;
       transition: all 0.5s;
