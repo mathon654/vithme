@@ -37,10 +37,10 @@ const state = reactive({
         </div>
       </div>
       <div class="live" v-if="props.isLive">直播中</div>
-      <div class="name mb1r f18 fb" @click.stop="$emit('goUserInfo')">
-        @{{ item.author.nickname }}
+      <div class="text-[18rem] font-semibold" @click.stop="$emit('goUserInfo')">
+        @{{ item.author.nickname }}123
       </div>
-      <div class="description">
+      <div class="text-[14rem] mt-[5rem]">
         {{ item.desc }}
       </div>
       <!--      <div class="music" @click.stop="bus.emit('nav','/home/music')">-->

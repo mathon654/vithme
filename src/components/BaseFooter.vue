@@ -1,23 +1,32 @@
 <template>
-  <div v-if="visible" class="footer" :class="{ isWhite }">
+  <div v-if="visible" class="footer">
     <div class="l-button" @click="refresh(1)">
+      <img v-if="currentTab === 1" src="../assets/img/nav/nav_home_p.png" alt="" class="nav-icon" />
+      <img v-else src="../assets/img/nav/nav_home_n.png" alt="" class="nav-icon" />
       <span v-if="!isRefresh1" :class="{ active: currentTab === 1 }">首页</span>
-      <img v-if="isRefresh1" src="../assets/img/icon/refresh1.png" alt="" class="refresh" />
     </div>
     <div class="l-button" @click="refresh(2)">
-      <span v-if="!isRefresh2" :class="{ active: currentTab === 2 }">商城</span>
-      <img v-if="isRefresh2" src="../assets/img/icon/refresh1.png" alt="" class="refresh" />
+      <img
+        v-if="currentTab === 2"
+        src="../assets/img/nav/nav_faxian_p.png"
+        alt=""
+        class="nav-icon"
+      />
+      <img v-else src="../assets/img/nav/nav_faxian_n.png" alt="" class="nav-icon" />
+      <span v-if="!isRefresh2" :class="{ active: currentTab === 2 }">发现</span>
     </div>
     <div class="l-button" @click="tab(3)">
-      <div class="add-ctn">
-        <img src="../assets/img/icon/add-light.png" alt="" class="add" />
-      </div>
+      <img src="../assets/img/nav/nav_add.png" alt="" class="add" />
     </div>
     <div class="l-button" @click="tab(4)">
+      <img v-if="currentTab === 4" src="../assets/img/nav/nav_mes_p.png" alt="" class="nav-icon" />
+      <img v-else src="../assets/img/nav/nav_mes_n.png" alt="" class="nav-icon" />
       <span :class="{ active: currentTab === 4 }">消息</span>
-      <div class="badge">2</div>
+      <!--      <div class="badge">2</div>-->
     </div>
     <div class="l-button" @click="tab(5)">
+      <img v-if="currentTab === 5" src="../assets/img/nav/nav_my_p.png" alt="" class="nav-icon" />
+      <img v-else src="../assets/img/nav/nav_my_n.png" alt="" class="nav-icon" />
       <span :class="{ active: currentTab === 5 }">我</span>
     </div>
   </div>
@@ -112,8 +121,14 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     position: relative;
     font-size: 16rem;
+
+    .nav-icon {
+      width: 20rem;
+      margin-bottom: 2rem;
+    }
 
     .refresh {
       width: 25%;
@@ -130,34 +145,18 @@ export default {
       }
     }
 
-    .add-ctn {
-      cursor: pointer;
-      @height: 27rem;
-      @width: 36rem;
-      height: @height;
-      width: @width;
-      border-radius: 6rem;
-      box-sizing: border-box;
-      padding: 0 2rem;
-      border: 3rem solid white;
-      background: black;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      img {
-        width: 20rem;
-      }
+    .add {
+      width: 34rem;
+      height: 28rem;
     }
 
     span {
       cursor: pointer;
-
-      font-weight: bold;
-      opacity: 0.7;
+      font-size: 10rem;
+      color: #b3a9a1;
 
       &.active {
-        opacity: 1;
+        color: #f8d4ac;
       }
     }
 

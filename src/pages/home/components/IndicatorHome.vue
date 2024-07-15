@@ -2,39 +2,42 @@
   <div class="indicator-home" :class="{ isLight }">
     <div class="notice" :style="noticeStyle"><span>下拉刷新内容</span></div>
     <div class="toolbar" ref="toolbar" :style="toolbarStyle">
-      <Icon
-        icon="tabler:menu-deep"
-        class="search"
-        @click="$emit('showSlidebar')"
-        style="transform: rotateY(180deg)"
-      />
+      <!--      <Icon-->
+      <!--        icon="tabler:menu-deep"-->
+      <!--        class="search"-->
+      <!--        @click="$emit('showSlidebar')"-->
+      <!--        style="transform: rotateY(180deg)"-->
+      <!--      />-->
       <div class="tab-ctn">
         <div class="tabs" ref="tabs">
           <div class="tab" :class="{ active: index === 0 }" @click.stop="change(0)">
-            <span>热点</span>
+            <span>人气</span>
           </div>
           <div class="tab" :class="{ active: index === 1 }" @click.stop="change(1)">
-            <span>长视频</span>
+            <span>网红</span>
           </div>
           <div class="tab" :class="{ active: index === 2 }" @click.stop="change(2)">
-            <span>关注</span>
-            <img src="../../../assets/img/icon/live.webp" class="tab2-img" />
+            <span>运动</span>
+            <!--            <img src="../../../assets/img/icon/live.webp" class="tab2-img" />-->
           </div>
           <div class="tab" :class="{ active: index === 3 }" @click.stop="change(3)">
-            <span>经验</span>
+            <span>调教</span>
           </div>
           <div class="tab" :class="{ active: index === 4 }" @click.stop="change(4)">
-            <span>推荐</span>
+            <span>女仆</span>
+          </div>
+          <div class="tab" :class="{ active: index === 4 }" @click.stop="change(4)">
+            <span>明星</span>
           </div>
         </div>
         <div class="indicator" ref="indicator"></div>
       </div>
-      <Icon
-        v-hide="loading"
-        icon="ion:search"
-        class="search"
-        @click="$router.push('/home/search')"
-      />
+      <!--      <Icon-->
+      <!--        v-hide="loading"-->
+      <!--        icon="ion:search"-->
+      <!--        class="search"-->
+      <!--        @click="$router.push('/home/search')"-->
+      <!--      />-->
     </div>
     <Loading :style="loadingStyle" class="loading" style="width: 40rem" :is-full-screen="false" />
   </div>
@@ -196,15 +199,14 @@ export default {
 <style scoped lang="less">
 .indicator-home {
   position: absolute;
-  font-size: 16rem;
-  top: 0;
+  font-size: 15rem;
+  top: 12rem;
   left: 0;
   z-index: 2;
   width: 100%;
   color: white;
   height: var(--home-header-height);
   transition: all 0.3s;
-  font-weight: bold;
 
   .notice {
     opacity: 0;
@@ -237,20 +239,19 @@ export default {
     align-items: center;
 
     .tab-ctn {
-      width: 80%;
+      width: 100%;
       position: relative;
 
       .tabs {
         display: flex;
-        justify-content: space-between;
+        gap: 20rem;
 
         .tab {
           transition: color 0.3s;
           color: rgba(white, 0.7);
           position: relative;
-          font-size: 17rem;
+          font-size: 15rem;
           cursor: pointer;
-
           .tab1-img {
             position: absolute;
             @width: 12rem;
@@ -277,9 +278,9 @@ export default {
       .indicator {
         //transition: left .3s;
         position: absolute;
-        bottom: -6rem;
-        height: 2.6rem;
-        width: 26rem;
+        bottom: -8rem;
+        height: 2rem;
+        width: 16rem;
         //width: calc(100% / 5);
         background: #fff;
         border-radius: 5rem;
