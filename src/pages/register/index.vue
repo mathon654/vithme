@@ -1,22 +1,34 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const authCode = ref('')
+
+const goStep = () => {
+  router.push('/profile')
+}
 </script>
 
 <template>
   <div>
     <div class="outer">
       <div class="authCode">
-        <van-field v-model="authCode" type="tel" label="手机号" placeholder="请输入验证码" />
+        <input
+          v-model="authCode"
+          placeholder="请输入验证码"
+          style="width: 100%; height: 100%; background: rgba(0, 0, 0, 0); border: none"
+          type="tel"
+        />
       </div>
       <div class="getAuthCode">获取验证码</div>
     </div>
-    <div class="nextStep">下一步</div>
+    <div class="nextStep" @click="goStep">下一步</div>
   </div>
 </template>
 
-<style scoped lang="less">
+<style lang="less" scoped>
 .outer {
   display: flex;
   justify-content: space-between;
@@ -28,10 +40,12 @@ const authCode = ref('')
   height: 44px;
   margin-top: 21px;
 }
+
 .authCode {
   flex: 1;
   height: 44px;
 }
+
 .getAuthCode {
   width: 70px;
   font-size: 14px;
@@ -39,6 +53,7 @@ const authCode = ref('')
   font-weight: 500;
   margin-right: 20px;
 }
+
 .nextStep {
   height: 44px;
   line-height: 44px;

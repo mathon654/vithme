@@ -184,16 +184,54 @@ const routes: RouteRecordRaw[] = [
     path: '/set-remark',
     component: () => import('@/pages/message/SetRemark.vue')
   },
+  // 注册
   {
     path: '/register',
     component: () => import('@/pages/register/index.vue')
   },
+  // 完善资料
   {
     path: '/profile',
     component: () => import('@/pages/profile/index.vue')
   },
+  // 获取邀请码
+  {
+    path: '/getInvitationCode',
+    component: () => import('@/pages/getInvitationCode/index.vue')
+  },
+  // 填写邀请码
+  {
+    path: '/invitationCode',
+    component: () => import('@/pages/invitationCode/index.vue')
+  },
+  // 完成注册
+  {
+    path: '/completeRegistration',
+    component: () => import('@/pages/completeRegistration/index.vue')
+  },
+  // 认证
+  {
+    path: '/authentication',
+    component: () => import('@/pages/authentication/index.vue')
+  },
+  // 认证
+  {
+    path: '/advancedCertification',
+    component: () => import('@/pages/advancedCertification/index.vue')
+  },
+  // 认证审核
+  {
+    path: '/certificationAudit',
+    component: () => import('@/pages/certificationAudit/index.vue')
+  },
+
+  {
+    path: '/oompleteRegistration',
+    component: () => import('@/pages/oompleteRegistration/index.vue')
+  },
 
   // {path: '/login', component: Login},
+  // 登陆
   { path: '/login', component: () => import('@/pages/login/Login.vue') },
   {
     path: '/login/other',

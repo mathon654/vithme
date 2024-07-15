@@ -1,16 +1,24 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const tel = ref()
+
+const goRegister = () => {
+  router.push('/register')
+}
 </script>
 <template>
   <div class="bg">
     <div class="label">DEMO</div>
     <div class="phone">
       <div class="area">+86</div>
-      <div class="phoneNumber"><van-field v-model="tel" type="tel" label="手机号" /></div>
+      <div class="phoneNumber">
+        <van-field v-model="tel" label="手机号" type="tel" />
+      </div>
     </div>
-    <div class="nextStep">下一步</div>
+    <div class="nextStep" @click="goRegister">下一步</div>
     <div class="flex">
       <span class="text1">注册即代表您已同意vithme的</span>
       <span class="text2">《用户协议》</span>
@@ -18,13 +26,14 @@ const tel = ref()
     </div>
   </div>
 </template>
-<style scoped lang="less">
+<style lang="less" scoped>
 .bg {
   width: 100%;
   height: 100%;
   background: url('@/assets/svg/login_bg.png') no-repeat;
   background-size: contain;
 }
+
 .label {
   font-size: 52px;
   color: #e1b486;
@@ -32,6 +41,7 @@ const tel = ref()
   text-align: center;
   margin-top: 149px;
 }
+
 .phone {
   border: 1px solid #918b87;
   display: flex;
@@ -42,6 +52,7 @@ const tel = ref()
   margin-top: 90px;
   height: 44px;
 }
+
 .area {
   height: 26px;
   font-size: 14px;
@@ -51,10 +62,12 @@ const tel = ref()
   margin-left: 19px;
   border-right: 1px solid #918b87;
 }
+
 .phoneNumber {
   flex: 1;
   height: 44px;
 }
+
 .nextStep {
   height: 44px;
   line-height: 44px;
@@ -65,17 +78,20 @@ const tel = ref()
   margin-left: 30px;
   margin-right: 30px;
 }
+
 .flex {
   margin-left: 37px;
   margin-right: 37px;
   margin-top: 14px;
 }
+
 .text1 {
   font-size: 12px;
   color: #918b87;
   line-height: 17px;
   font-weight: 400;
 }
+
 .text2 {
   font-size: 12px;
   color: #f8d4ac;

@@ -24,13 +24,19 @@ const props = defineProps({
   scale: {
     type: [Number, String],
     default: 1
+  },
+  showIcon: {
+    type: Boolean,
+    default: true
   }
 })
 
 const imgEl = $ref()
 const src = $computed(() => {
-  return new URL(`../assets/img/icon/components/${props.mode}-${props.img}.png`, import.meta.url)
-    .href
+  if (props.showIcon) {
+    return new URL(`../assets/img/icon/components/${props.mode}-${props.img}.png`, import.meta.url)
+      .href
+  }
 })
 
 onMounted(() => {
