@@ -1,132 +1,138 @@
 <template>
-  <div id="Shop">
+  <div id="Shop" style="background: black">
     <div class="wrapper">
-      <div class="search">
-        <div class="search-input">
+      <div class="search justify-between">
+        <div class="flex text-[#F8D4AC] text-[18px] font-semibold">
+          <div
+            v-for="(item, index) in checkList"
+            :key="item.label"
+            :style="{ marginLeft: index > 0 ? '40px' : '' }"
+            class="relative"
+            @click="handleCLick(item)"
+          >
+            <span>{{ item.label }}</span>
+            <div
+              v-if="item.checked"
+              class="w-[16px] h-[2px] absolute bottom-[-2px] left-[25%]"
+              style="border-bottom: 2px solid #f8d4ac"
+            ></div>
+          </div>
+        </div>
+        <div>
           <Icon icon="tabler:search" />
-          <div class="placeholder">50元话费充值</div>
-          <Icon color="gray" icon="lucide:camera" />
-          <div class="search-notice">搜索</div>
         </div>
-        <div class="more">
-          <Icon icon="ep:shopping-cart" />
-        </div>
+        <!--        <div class="search-input">-->
+        <!--          <Icon icon="tabler:search" />-->
+        <!--          <div class="placeholder">50元话费充值</div>-->
+        <!--          <Icon color="gray" icon="lucide:camera" />-->
+        <!--          <div class="search-notice">搜索</div>-->
+        <!--        </div>-->
+        <!--        <div class="more">-->
+        <!--          <Icon icon="ep:shopping-cart" />-->
+        <!--        </div>-->
       </div>
     </div>
-    <ScrollList class="Scroll" :api="recommendedShop">
+    <swiper :pagination="{ clickable: true }">
+      <swiper-slide v-for="item in templateOptions" :key="item.src">
+        <img :src="item.src" class="h-[132px] w-full" />
+      </swiper-slide>
+    </swiper>
+    <ScrollList :api="recommendedShop" class="Scroll">
       <template v-slot="{ list }">
-        <div class="top-card">
-          <div class="card">
-            <div class="options">
-              <div class="option" @click="_no">
-                <Icon icon="lets-icons:order-light" />
-                <div>我的订单</div>
+        <div class="flex flex-wrap">
+          <div
+            v-for="(item, index) in list"
+            :key="item.name"
+            :class="`w-[48.7%] h-[225px]  mb-[5px] relative`"
+            :style="{ marginLeft: index % 2 !== 0 ? '5px' : '' }"
+          >
+            <img v-lazy="_checkImgUrl('goods/' + item.cover)" class="w-full h-full" />
+            <div class="absolute bottom-[12px] left-[13px]">
+              <div
+                class="text-[#FFFFFF] text-[14px] font-medium w-[87px] text-ellipsis whitespace-nowrap overflow-hidden"
+              >
+                Nancy Timassssss收拾收拾是
               </div>
-              <div class="option" @click="_no">
-                <Icon icon="material-symbols-light:charging-station-outline" />
-                <div>手机充值</div>
-              </div>
-              <div class="option" @click="_no">
-                <Icon icon="system-uicons:message" />
-                <div>购物消息</div>
-              </div>
-              <div class="option" @click="_no">
-                <Icon icon="fluent:location-16-regular" />
-                <div>小时达</div>
-              </div>
-              <div class="option" @click="_no">
-                <Icon icon="dashicons:money-alt" />
-                <div>退款/售后</div>
-              </div>
-              <div class="option" @click="_no">
-                <Icon icon="icon-park-outline:clothes-turtleneck" />
-                <div>潮流服饰</div>
-              </div>
-            </div>
-          </div>
-          <div class="card" style="margin-bottom: 5rem">
-            <div class="baiyibutie">
-              <div class="item">
-                <img src="@/assets/img/icon/shop/baiyibutie.png" alt="" />
-                <span>38节补贴</span>
-              </div>
-              <div class="item">
-                <img src="@/assets/img/icon/shop/1.webp" alt="" />
-                <span class="price">
-                  <span class="m">￥</span>
-                  <span>470</span>
-                </span>
-              </div>
-              <div class="item">
-                <img src="@/assets/img/icon/shop/2.webp" alt="" />
-                <span class="price">
-                  <span class="m">￥</span>
-                  <span>699</span>
-                </span>
-              </div>
-              <div class="item">
-                <img src="@/assets/img/icon/shop/3.png" alt="" />
-                <span class="price">
-                  <span class="m">￥</span>
-                  <span>8.8</span>
-                </span>
-              </div>
-              <div class="item">
-                <img src="@/assets/img/icon/shop/4.jpg" alt="" />
-                <span class="price">
-                  <span class="m">￥</span>
-                  <span>2.99</span>
-                </span>
+              <div
+                class="text-[#B3A9A] text-[12px] font-normal w-[84px] text-ellipsis whitespace-nowrap overflow-hidden"
+              >
+                模特，瑜伽教练
               </div>
             </div>
           </div>
         </div>
-        <WaterfallList :list="list">
-          <template v-slot="{ item }">
-            <div class="goods" @click="nav('/shop/detail', {}, item)">
-              <div class="item">
-                <img class="poster" v-lazy="_checkImgUrl('goods/' + item.cover)" />
-                <div class="bottom">
-                  <div class="desc">
-                    {{ item.name }}
-                  </div>
-                  <div class="discounts" v-if="item.discount">
-                    {{ item.discount }}
-                  </div>
-                  <div class="info">
-                    <div class="price">
-                      ￥
-                      <div class="big">{{ item.price }}</div>
-                    </div>
-                    <div class="num">已售{{ item.sold }}件</div>
-                  </div>
-                  <div class="low" v-if="item.isLowPrice">近30天低价</div>
-                </div>
-              </div>
-            </div>
-          </template>
-        </WaterfallList>
+        <!--        <WaterfallList :list="list">-->
+        <!--          <template v-slot="{ item }">-->
+        <!--            <div class="goods" @click="nav('/shop/detail', {}, item)">-->
+        <!--              <div class="item">-->
+        <!--                <img v-lazy="_checkImgUrl('goods/' + item.cover)" class="poster" />-->
+        <!--                <div class="bottom">-->
+        <!--                  <div class="desc">-->
+        <!--                    {{ item.name }}-->
+        <!--                  </div>-->
+        <!--                  <div v-if="item.discount" class="discounts">-->
+        <!--                    {{ item.discount }}-->
+        <!--                  </div>-->
+        <!--                  <div class="info">-->
+        <!--                    <div class="price">-->
+        <!--                      ￥-->
+        <!--                      <div class="big">{{ item.price }}</div>-->
+        <!--                    </div>-->
+        <!--                    <div class="num">已售{{ item.sold }}件</div>-->
+        <!--                  </div>-->
+        <!--                  <div v-if="item.isLowPrice" class="low">近30天低价</div>-->
+        <!--                </div>-->
+        <!--              </div>-->
+        <!--            </div>-->
+        <!--          </template>-->
+        <!--        </WaterfallList>-->
       </template>
     </ScrollList>
-    <BaseFooter v-bind:init-tab="2" :is-white="true" style="position: fixed; left: 0" />
   </div>
 </template>
 
-<script setup lang="tsx">
+<script lang="tsx" setup>
 import { useNav } from '@/utils/hooks/useNav'
-import { _checkImgUrl, _no } from '@/utils'
-import ScrollList from '@/components/ScrollList.vue'
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+import 'swiper/css'
+import 'swiper/css/pagination'
+import { ref } from 'vue'
+
+import 'swiper/css/navigation'
 import { recommendedShop } from '@/api/user'
-import WaterfallList from '@/components/WaterfallList.vue'
+import ScrollList from '@/components/ScrollList.vue'
+import { _checkImgUrl } from '@/utils'
 
 defineOptions({
   name: 'Shop'
 })
 
 const nav = useNav()
+const templateOptions = ref([
+  { src: 'https://cdn.pixabay.com/photo/2016/03/30/08/24/peacock-1290248_1280.jpg', title: '1' },
+  { src: 'https://cdn.pixabay.com/photo/2024/05/18/19/21/plant-8770937_960_720.jpg', title: '1' }
+])
+const checkList = ref([
+  { label: '推荐', checked: true },
+  { label: '新人', checked: false },
+  { label: '在线', checked: false }
+])
+
+const handleCLick = (row) => {
+  checkList.value = checkList.value.map((item) => {
+    return {
+      ...item,
+      checked: item.label === row.label
+    }
+  })
+}
+
+const slideChange = (e) => {
+  // activeIndex.value = e.realIndex
+}
 </script>
 
-<style scoped lang="less">
+<style lang="less" scoped>
 @fColor: #f1f1f1;
 
 #Shop {
@@ -272,7 +278,7 @@ const nav = useNav()
 
     .item {
       border-radius: 8rem;
-      overflow: hidden;
+      //overflow: hidden;
       background: white;
 
       img {

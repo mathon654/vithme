@@ -224,6 +224,10 @@ const routes: RouteRecordRaw[] = [
     path: '/certificationAudit',
     component: () => import('@/pages/certificationAudit/index.vue')
   },
+  {
+    path: '/swiperView',
+    component: () => import('@/pages/swiperView/index.vue')
+  },
 
   {
     path: '/oompleteRegistration',
