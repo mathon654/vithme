@@ -195,7 +195,18 @@
     </ConfirmDialog>
 
     <ShareToFriend v-model="state.shareToFriend" />
-    <GiftModal v-if="state.showGift" :list="[{ name: 'gift1' }]" :hidden="hiddenGiftModal" />
+    <GiftModal
+      v-if="state.showGift"
+      :list="[
+        { name: 'gift1' },
+        { name: 'gift12' },
+        { name: 'gift13' },
+        { name: 'gift14' },
+        { name: 'gift15' },
+        { name: 'gift16' }
+      ]"
+      :hidden="hiddenGiftModal"
+    />
 
     <BaseMask v-if="!isMobile" @click="isMobile = true" />
     <div v-if="!isMobile" class="guide">
@@ -236,7 +247,6 @@ import Slide0 from '@/pages/home/slide/Slide0.vue'
 import Slide2 from '@/pages/home/slide/Slide2.vue'
 import Slide4 from '@/pages/home/slide/Slide4.vue'
 import { DefaultUser } from '@/utils/const_var'
-import { _no } from '@/utils'
 import LongVideo from '@/pages/home/slide/LongVideo.vue'
 import { useBaseStore } from '@/store/pinia'
 import BaseMask from '@/components/BaseMask.vue'

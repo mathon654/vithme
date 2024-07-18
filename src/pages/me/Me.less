@@ -276,34 +276,57 @@
       }
     }
   }
-
+  .avatar {
+    padding: 2px;
+    border-radius: 50%;
+    width: 60rem;
+    height: 60rem;
+  }
+  .balance-bg {
+    background-image: url('../../assets/svg/my_qian_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 68rem;
+    padding: 10rem 20rem;
+    margin-top: 10rem;
+    position: absolute;
+    bottom: -20rem;
+  }
   .desc {
     header {
       position: relative;
       color: white;
-      height: 190rem;
-      background-image: url('../../assets/img/header-bg.png');
+      height: 260rem;
+      background-image: url('../../assets/svg/my_bg.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-
       box-sizing: border-box;
 
+      .avatar {
+        padding: 2px;
+        border-radius: 50%;
+        width: 60rem;
+        height: 60rem;
+      }
+      .balance-bg {
+        background-image: url('../../assets/svg/my_qian_bg.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 68rem;
+        padding: 10rem 20rem;
+        margin-top: 10rem;
+        position: absolute;
+        bottom: -34rem;
+      }
       .info {
         position: absolute;
         bottom: 10rem;
-        padding: 20rem;
         display: flex;
         align-items: center;
-        gap: 15rem;
-
-        .avatar {
-          background: black;
-          padding: 2px;
-          border-radius: 50%;
-          width: 100rem;
-          height: 100rem;
-        }
+        flex: 1;
 
         .name {
           font-size: 16rem;
@@ -311,8 +334,8 @@
         }
 
         .number {
-          font-size: 12rem;
-          color: var(--second-text-color);
+          font-size: 14rem;
+          color: #918b87;
           display: flex;
           align-items: center;
 

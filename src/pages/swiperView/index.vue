@@ -10,7 +10,7 @@ const templateOptions = ref([{ templateImage: home1 }, { templateImage: home2 }]
 </script>
 
 <template>
-  <div class="bg-white w-[300px] h-[379px] center relative">
+  <div class="center relative">
     <div class="w-[100%]">
       <swiper
         :centered-slides="true"
