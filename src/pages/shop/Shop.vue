@@ -32,67 +32,87 @@
         <!--        </div>-->
       </div>
     </div>
-    <swiper :pagination="{ clickable: true }">
-      <swiper-slide v-for="item in templateOptions" :key="item.src">
-        <img :src="item.src" class="h-[132px] w-full" />
-      </swiper-slide>
-    </swiper>
-    <ScrollList :api="recommendedShop" class="Scroll">
-      <template v-slot="{ list }">
-        <div class="flex flex-wrap">
-          <div
-            v-for="(item, index) in list"
-            :key="item.name"
-            :class="`w-[48.7%] h-[225px]  mb-[5px] relative`"
-            :style="{ marginLeft: index % 2 !== 0 ? '5px' : '' }"
-          >
-            <img v-lazy="_checkImgUrl('goods/' + item.cover)" class="w-full h-full" />
-            <div class="absolute bottom-[12px] left-[13px]">
-              <div
-                class="text-[#FFFFFF] text-[14px] font-medium w-[87px] text-ellipsis whitespace-nowrap overflow-hidden"
-              >
-                Nancy Timassssss收拾收拾是
-              </div>
-              <div
-                class="text-[#B3A9A] text-[12px] font-normal w-[84px] text-ellipsis whitespace-nowrap overflow-hidden"
-              >
-                模特，瑜伽教练
+    <div v-if="checkList[0].checked">
+      <swiper :pagination="{ clickable: true }">
+        <swiper-slide v-for="item in templateOptions" :key="item.src">
+          <img :src="item.src" class="h-[132px] w-full" />
+        </swiper-slide>
+      </swiper>
+      <ScrollList :api="recommendedShop" class="Scroll">
+        <template v-slot="{ list }">
+          <div class="flex flex-wrap">
+            <div
+              v-for="(item, index) in list"
+              :key="item.name"
+              :class="`w-[48.7%] h-[225px]  mb-[5px] relative`"
+              :style="{ marginLeft: index % 2 !== 0 ? '5px' : '' }"
+            >
+              <img v-lazy="_checkImgUrl('goods/' + item.cover)" class="w-full h-full" />
+              <div class="absolute bottom-[12px] left-[13px]">
+                <div
+                  class="text-[#FFFFFF] text-[14px] font-medium w-[87px] text-ellipsis whitespace-nowrap overflow-hidden"
+                >
+                  Nancy Timassssss收拾收拾是
+                </div>
+                <div
+                  class="text-[#B3A9A] text-[12px] font-normal w-[84px] text-ellipsis whitespace-nowrap overflow-hidden"
+                >
+                  模特，瑜伽教练
+                </div>
               </div>
             </div>
           </div>
+          <!--        <WaterfallList :list="list">-->
+          <!--          <template v-slot="{ item }">-->
+          <!--            <div class="goods" @click="nav('/shop/detail', {}, item)">-->
+          <!--              <div class="item">-->
+          <!--                <img v-lazy="_checkImgUrl('goods/' + item.cover)" class="poster" />-->
+          <!--                <div class="bottom">-->
+          <!--                  <div class="desc">-->
+          <!--                    {{ item.name }}-->
+          <!--                  </div>-->
+          <!--                  <div v-if="item.discount" class="discounts">-->
+          <!--                    {{ item.discount }}-->
+          <!--                  </div>-->
+          <!--                  <div class="info">-->
+          <!--                    <div class="price">-->
+          <!--                      ￥-->
+          <!--                      <div class="big">{{ item.price }}</div>-->
+          <!--                    </div>-->
+          <!--                    <div class="num">已售{{ item.sold }}件</div>-->
+          <!--                  </div>-->
+          <!--                  <div v-if="item.isLowPrice" class="low">近30天低价</div>-->
+          <!--                </div>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </template>-->
+          <!--        </WaterfallList>-->
+        </template>
+      </ScrollList>
+    </div>
+    <div
+      v-if="checkList[1].checked"
+      class="h-[752px] mt-[20px] relative"
+      v-bind:style="{ 'background-image': 'url(' + imageUrl + ')' }"
+    >
+      <div class="absolute bottom-[10px]">
+        <div class="text-[20px] text-[#FFFFFF] font-semibold pt-[419px] ml-[21px]">可爱的女人</div>
+        <div class="text-[14px] text-[#FFFFFF] font-normal ml-[21px] mt-[4px]">
+          车模、选美冠军、香港小姐
         </div>
-        <!--        <WaterfallList :list="list">-->
-        <!--          <template v-slot="{ item }">-->
-        <!--            <div class="goods" @click="nav('/shop/detail', {}, item)">-->
-        <!--              <div class="item">-->
-        <!--                <img v-lazy="_checkImgUrl('goods/' + item.cover)" class="poster" />-->
-        <!--                <div class="bottom">-->
-        <!--                  <div class="desc">-->
-        <!--                    {{ item.name }}-->
-        <!--                  </div>-->
-        <!--                  <div v-if="item.discount" class="discounts">-->
-        <!--                    {{ item.discount }}-->
-        <!--                  </div>-->
-        <!--                  <div class="info">-->
-        <!--                    <div class="price">-->
-        <!--                      ￥-->
-        <!--                      <div class="big">{{ item.price }}</div>-->
-        <!--                    </div>-->
-        <!--                    <div class="num">已售{{ item.sold }}件</div>-->
-        <!--                  </div>-->
-        <!--                  <div v-if="item.isLowPrice" class="low">近30天低价</div>-->
-        <!--                </div>-->
-        <!--              </div>-->
-        <!--            </div>-->
-        <!--          </template>-->
-        <!--        </WaterfallList>-->
-      </template>
-    </ScrollList>
+        <div class="label">上海戏剧学院</div>
+        <div class="flex mt-[22px]">
+          <img class="w-[50px] h-[50px] ml-[16px]" src="@/assets/svg/new_shauxin.png" />
+          <img class="w-[100px] h-[50px] ml-[9px]" src="@/assets/svg/new_shanchu.png" />
+          <img class="w-[100px] h-[50px] ml-[9px]" src="@/assets/svg/new_xihuan.png" />
+          <img class="w-[50px] h-[50px] ml-[9px]" src="@/assets/svg/new_liaotian.png" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="tsx" setup>
-import { useNav } from '@/utils/hooks/useNav'
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -107,11 +127,11 @@ defineOptions({
   name: 'Shop'
 })
 
-const nav = useNav()
 const templateOptions = ref([
   { src: 'https://cdn.pixabay.com/photo/2016/03/30/08/24/peacock-1290248_1280.jpg', title: '1' },
   { src: 'https://cdn.pixabay.com/photo/2024/05/18/19/21/plant-8770937_960_720.jpg', title: '1' }
 ])
+const imageUrl = ref('https://cdn.pixabay.com/photo/2016/03/30/08/24/peacock-1290248_1280.jpg')
 const checkList = ref([
   { label: '推荐', checked: true },
   { label: '新人', checked: false },
@@ -125,10 +145,6 @@ const handleCLick = (row) => {
       checked: item.label === row.label
     }
   })
-}
-
-const slideChange = (e) => {
-  // activeIndex.value = e.realIndex
 }
 </script>
 
@@ -338,6 +354,69 @@ const slideChange = (e) => {
         }
       }
     }
+  }
+}
+
+.label {
+  border: 1px solid #cdc7c4;
+  border-radius: 13px;
+  margin-left: 21px;
+  color: white;
+  width: 104px;
+  height: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.tab-ctn {
+  width: 100%;
+  position: relative;
+
+  .tabs {
+    display: flex;
+    gap: 20rem;
+
+    .tab {
+      transition: color 0.3s;
+      color: rgba(white, 0.7);
+      position: relative;
+      font-size: 15rem;
+      cursor: pointer;
+
+      .tab1-img {
+        position: absolute;
+        @width: 12rem;
+        width: @width;
+        height: @width;
+        margin-left: 4rem;
+        transition: all 0.3s;
+        // margin-top: 7rem;
+      }
+
+      .tab2-img {
+        position: absolute;
+        height: 15rem;
+        left: 24rem;
+        top: -5rem;
+      }
+
+      &.active {
+        color: white;
+      }
+    }
+  }
+
+  .indicator {
+    //transition: left .3s;
+    position: absolute;
+    bottom: -8rem;
+    height: 2rem;
+    width: 16rem;
+    //width: calc(100% / 5);
+    background: #fff;
+    border-radius: 5rem;
   }
 }
 </style>
