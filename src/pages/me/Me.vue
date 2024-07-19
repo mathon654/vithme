@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="meContent">
     <div class="header px-[20rem] text-white">
       <div class="flex pt-[30rem] gap-[15rem]">
         <img
@@ -65,10 +65,10 @@
         <img src="../../assets/svg/my_more.png" alt="" width="16rem" height="16rem" />
       </div>
     </div>
+    <BaseFooter v-bind:init-tab="5" />
   </div>
 </template>
 <script>
-import Indicator from '../../components/slide/Indicator'
 import { nextTick } from 'vue'
 import { mapState } from 'pinia'
 import bus from '../../utils/bus'
@@ -637,6 +637,12 @@ export default {
 </script>
 
 <style scoped lang="less">
+.meContent {
+  height: calc(100vh - 50rem);
+  overflow: auto;
+  background-color: #000;
+  padding-bottom: 50rem;
+}
 .header {
   position: relative;
   color: white;

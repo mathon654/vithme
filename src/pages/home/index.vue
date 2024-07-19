@@ -250,6 +250,7 @@ import { DefaultUser } from '@/utils/const_var'
 import LongVideo from '@/pages/home/slide/LongVideo.vue'
 import { useBaseStore } from '@/store/pinia'
 import BaseMask from '@/components/BaseMask.vue'
+import { myVideo } from '@/api/videos'
 
 const nav = useNav()
 const baseStore = useBaseStore()
@@ -343,6 +344,7 @@ onMounted(() => {
     state.baseIndex = 2
   })
   bus.on(EVENT_KEY.CURRENT_ITEM, setCurrentItem)
+  getData()
 })
 
 onUnmounted(() => {
@@ -358,6 +360,13 @@ onDeactivated(() => {
   state.active = false
   bus.emit(EVENT_KEY.TOGGLE_CURRENT_VIDEO)
 })
+async function getData() {
+  const res = await myVideo({
+    pageNo: 1,
+    pageSize: 20
+  })
+  console.log('getData', res)
+}
 
 function closeComments() {
   bus.emit(EVENT_KEY.CLOSE_COMMENTS)
@@ -369,7 +378,6 @@ function dislike() {
   // _notice('操作成功，将减少此类视频的推荐')
 }
 function hiddenGiftModal() {
-  console.log('hiddenGiftModal')
   state.showGift = false
 }
 </script>

@@ -15,7 +15,7 @@ const goRegister = () => {
     <div class="phone">
       <div class="area">+86</div>
       <div class="phoneNumber">
-        <van-field v-model="tel" label="手机号" type="tel" />
+        <input type="text" class="phoneInput" />
       </div>
     </div>
     <div class="nextStep" @click="goRegister">下一步</div>
@@ -66,6 +66,20 @@ const goRegister = () => {
 .phoneNumber {
   flex: 1;
   height: 44px;
+}
+.phoneInput {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: none;
+  font-size: 14px;
+  color: #cdc7c4;
+  font-weight: 500;
+  padding-left: 10px;
+  outline: none;
+  &:focus {
+    outline: none;
+  }
 }
 
 .nextStep {
