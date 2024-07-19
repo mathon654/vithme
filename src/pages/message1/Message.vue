@@ -1,51 +1,37 @@
 <template>
   <div id="Message" ref="app" :class="data.createChatDialog ? 'disable-scroll' : ''">
-    <div v-show="!data.searching" class="no-search">
+    <div class="no-search" v-show="!data.searching">
       <header>
-        <Icon icon="formkit:add" @click="data.createChatDialog = true" />
+        <Icon @click="data.createChatDialog = true" icon="formkit:add" />
         <Icon icon="tabler:camera-selfie" />
-        <Icon icon="tabler:search" @click="data.searching = true" />
+        <Icon @click="data.searching = true" icon="tabler:search" />
       </header>
 
       <Scroll ref="mainScroll">
-        <div class="flex">
-          <div class="ml-[45px] w-[56px] text-center">
-            <img class="w-[48px] h-[48px]" src="@/assets/svg/xiaoxi_notice.png" />
-            <div>官方通知</div>
+        <div class="friends">
+          <div
+            class="friend"
+            @click="nav('/message/chat')"
+            :key="index"
+            v-for="(item, index) in store.friends.all"
+          >
+            <div class="avatar" :class="index % 2 === 0 ? 'on-line' : ''">
+              <img :src="_checkImgUrl(item.avatar)" alt="" />
+            </div>
+            <span>{{ item.name }}</span>
           </div>
-          <div class="ml-[47px] w-[56px] text-center">
-            <img class="w-[48px] h-[48px]" src="@/assets/svg/xiaoxi_notice.png" />
-            <div>官方通知</div>
-          </div>
-          <div class="ml-[47px] mr-[49px] w-[56px] text-center">
-            <img class="w-[48px] h-[48px]" src="@/assets/svg/xiaoxi_notice.png" />
-            <div>官方通知</div>
+          <div class="friend">
+            <div class="avatar">
+              <img src="../../assets/img/icon/message/setting.png" alt="" />
+            </div>
+            <span>状态设置</span>
           </div>
         </div>
-        <!--        <div class="friends">-->
-        <!--          <div-->
-        <!--            class="friend"-->
-        <!--            @click="nav('/message/chat')"-->
-        <!--            :key="index"-->
-        <!--            v-for="(item, index) in store.friends.all"-->
-        <!--          >-->
-        <!--            <div class="avatar" :class="index % 2 === 0 ? 'on-line' : ''">-->
-        <!--              <img :src="_checkImgUrl(item.avatar)" alt="" />-->
-        <!--            </div>-->
-        <!--            <span>{{ item.name }}</span>-->
-        <!--          </div>-->
-        <!--          <div class="friend">-->
-        <!--            <div class="avatar">-->
-        <!--              <img src="../../assets/img/icon/message/setting.png" alt="" />-->
-        <!--            </div>-->
-        <!--            <span>状态设置</span>-->
-        <!--          </div>-->
-        <!--        </div>-->
         <div class="messages">
           <!--      粉丝-->
           <div class="message" @click="nav('/message/fans')">
             <div class="avatar">
-              <img alt="" class="head-image" src="../../assets/img/icon/msg-icon1.png" />
+              <img src="../../assets/img/icon/msg-icon1.png" alt="" class="head-image" />
             </div>
             <div class="content">
               <div class="left">
@@ -55,14 +41,14 @@
                 <div class="detail">xxx 关注了你</div>
               </div>
               <div class="right">
-                <dy-back class="arrow" direction="right" img="back" mode="gray" />
+                <dy-back class="arrow" mode="gray" img="back" direction="right" />
               </div>
             </div>
           </div>
           <!--      互动消息-->
           <div class="message" @click="nav('/message/all')">
             <div class="avatar">
-              <img alt="" class="head-image" src="../../assets/img/icon/msg-icon2.png" />
+              <img src="../../assets/img/icon/msg-icon2.png" alt="" class="head-image" />
             </div>
             <div class="content">
               <div class="left">
@@ -72,14 +58,14 @@
                 <div class="detail">xxx 近期访问过你的主页</div>
               </div>
               <div class="right">
-                <dy-back class="arrow" direction="right" img="back" mode="gray" />
+                <dy-back class="arrow" mode="gray" img="back" direction="right" />
               </div>
             </div>
           </div>
           <!--      消息-->
           <div class="message" @click="nav('/message/chat')">
             <div class="avatar on-line">
-              <img alt="" class="head-image" src="../../assets/img/icon/avatar/2.png" />
+              <img src="../../assets/img/icon/avatar/2.png" alt="" class="head-image" />
             </div>
             <div class="content">
               <div class="left">
@@ -103,7 +89,7 @@
           <!--      抖音小助手-->
           <div class="message" @click="nav('/message/douyin-helper')">
             <div class="avatar">
-              <img alt="" class="head-image" src="../../assets/img/icon/msg-icon5.webp" />
+              <img src="../../assets/img/icon/msg-icon5.webp" alt="" class="head-image" />
             </div>
             <div class="content">
               <div class="left">
@@ -125,7 +111,7 @@
           <!--      系统通知-->
           <div class="message" @click="nav('/message/system-notice')">
             <div class="avatar">
-              <img alt="" class="head-image" src="../../assets/img/icon/msg-icon4.png" />
+              <img src="../../assets/img/icon/msg-icon4.png" alt="" class="head-image" />
             </div>
             <div class="content">
               <div class="left">
@@ -147,7 +133,7 @@
           <!--      求更新-->
           <div class="message" @click="nav('/me/request-update')">
             <div class="avatar">
-              <img alt="" class="head-image" src="../../assets/img/icon/msg-icon7.webp" />
+              <img src="../../assets/img/icon/msg-icon7.webp" alt="" class="head-image" />
             </div>
             <div class="content">
               <div class="left">
@@ -169,7 +155,7 @@
           <!--      任务通知-->
           <div class="message" @click="nav('/message/task-notice')">
             <div class="avatar">
-              <img alt="" class="head-image" src="../../assets/img/icon/msg-icon6.webp" />
+              <img src="../../assets/img/icon/msg-icon6.webp" alt="" class="head-image" />
             </div>
             <div class="content">
               <div class="left">
@@ -191,7 +177,7 @@
           <!--      直播通知-->
           <div class="message" @click="nav('/message/live-notice')">
             <div class="avatar">
-              <img alt="" class="head-image" src="../../assets/img/icon/msg-icon8.webp" />
+              <img src="../../assets/img/icon/msg-icon8.webp" alt="" class="head-image" />
             </div>
             <div class="content">
               <div class="left">
@@ -213,7 +199,7 @@
           <!--      钱包通知-->
           <div class="message" @click="nav('/message/money-notice')">
             <div class="avatar">
-              <img alt="" class="head-image" src="../../assets/img/icon/msg-icon9.webp" />
+              <img src="../../assets/img/icon/msg-icon9.webp" alt="" class="head-image" />
             </div>
             <div class="content">
               <div class="left">
@@ -261,48 +247,48 @@
           <!--      </div>-->
         </div>
       </Scroll>
-      <from-bottom-dialog v-model="data.createChatDialog" page-id="Message">
-        <div v-show="!data.showJoinedChat" class="create-chat-wrapper">
+      <from-bottom-dialog page-id="Message" v-model="data.createChatDialog">
+        <div class="create-chat-wrapper" v-show="!data.showJoinedChat">
           <Search
-            v-model="data.createChatSearchKey"
             :isShowRightText="data.isShowRightText"
-            class="ml2r mr2r"
-            placeholder="搜索用户"
-            @clear="data.isShowRightText = false"
             @click="data.isShowRightText = true"
             @notice="data.isShowRightText = false"
+            @clear="data.isShowRightText = false"
+            class="ml2r mr2r"
+            placeholder="搜索用户"
+            v-model="data.createChatSearchKey"
           ></Search>
           <template v-if="data.createChatSearchKey">
-            <div v-if="data.searchFriends.length" class="search-result">
+            <div class="search-result" v-if="data.searchFriends.length">
               <div
-                v-for="(item, i) in data.searchFriends"
-                :key="i"
                 class="search-result-item"
+                :key="i"
+                v-for="(item, i) in data.searchFriends"
                 @click="handleClick(item)"
               >
-                <img alt="" class="left" src="../../assets/img/icon/head-image.jpeg" />
+                <img class="left" src="../../assets/img/icon/head-image.jpeg" alt="" />
                 <div class="right">
                   <div class="info">
                     <span class="name">{{ item.name }}</span>
                     <span class="account">{{ item.account ? '抖音号:' + item.account : '' }}</span>
                   </div>
-                  <img v-if="item.select" alt="" src="../../assets/img/icon/message/checked.png" />
+                  <img v-if="item.select" src="../../assets/img/icon/message/checked.png" alt="" />
                   <img
                     v-if="!item.select"
-                    alt=""
                     src="../../assets/img/icon/message/no-check2.png"
+                    alt=""
                   />
                 </div>
               </div>
             </div>
-            <div v-else class="no-result">
+            <div class="no-result" v-else>
               <div class="notice-h1">搜索结果为空</div>
               <div class="notice-h2">没有搜索到相关的联系人</div>
             </div>
           </template>
           <template v-else>
             <div class="joined-chat" @click="data.showJoinedChat = true">
-              <img alt="" class="left" src="../../assets/img/icon/people-gray.png" />
+              <img class="left" src="../../assets/img/icon/people-gray.png" alt="" />
               <div class="right">
                 <span>已加入的群聊</span>
                 <dy-back direction="right" mode="light"></dy-back>
@@ -311,15 +297,15 @@
             <div class="friend-list">
               <div class="index">Z</div>
               <div
-                v-for="(item, i) in store.friends.all"
-                :key="i"
                 class="friend-item"
+                :key="i"
+                v-for="(item, i) in store.friends.all"
                 @click="item.select = !item.select"
               >
-                <img :src="_checkImgUrl(item.avatar)" alt="" class="left" />
+                <img class="left" :src="_checkImgUrl(item.avatar)" alt="" />
                 <div class="right">
                   <span>{{ item.name }}</span>
-                  <Check v-model="item.select" mode="red" style="height: 20rem; width: 20rem" />
+                  <Check mode="red" style="height: 20rem; width: 20rem" v-model="item.select" />
                 </div>
               </div>
             </div>
@@ -328,16 +314,16 @@
             <div class="btn primary">发起群聊{{ selectFriends ? `(${selectFriends})` : '' }}</div>
           </div>
         </div>
-        <div v-show="data.showJoinedChat" class="joined-chat-wrapper">
+        <div class="joined-chat-wrapper" v-show="data.showJoinedChat">
           <div class="nav">
-            <dy-back mode="light" scale="1.2" @click="data.showJoinedChat = false"></dy-back>
+            <dy-back @click="data.showJoinedChat = false" mode="light" scale="1.2"></dy-back>
             <span>已加入的群聊</span>
             <span>&nbsp;</span>
           </div>
 
           <div class="chat-list">
-            <div v-for="(item, i) in 15" :key="i" class="chat-item">
-              <img alt="" class="left" src="../../assets/img/icon/head-image.jpeg" />
+            <div class="chat-item" :key="i" v-for="(item, i) in 15">
+              <img class="left" src="../../assets/img/icon/head-image.jpeg" alt="" />
               <div class="right">
                 <div class="title">
                   <div class="name">
@@ -354,28 +340,28 @@
       </from-bottom-dialog>
 
       <transition name="fade">
-        <div v-if="data.isShowRecommend" class="recommend-dialog">
+        <div class="recommend-dialog" v-if="data.isShowRecommend">
           <div class="dialog-content">
             <div class="dialog-header">
               <img
-                alt=""
-                src="../../assets/img/icon/components/gray-close-full2.png"
                 style="opacity: 0"
+                src="../../assets/img/icon/components/gray-close-full2.png"
+                alt=""
               />
               <div class="title">
                 <span>朋友推荐</span>
-                <img alt="" src="../../assets/img/icon/about-gray.png" />
+                <img src="../../assets/img/icon/about-gray.png" alt="" />
               </div>
               <img
-                alt=""
-                src="../../assets/img/icon/components/gray-close-full2.png"
                 @click="data.isShowRecommend = false"
+                src="../../assets/img/icon/components/gray-close-full2.png"
+                alt=""
               />
             </div>
             <div class="dialog-body">
               <Scroll ref="scroll" @pulldown="loadRecommendData">
                 <Peoples v-model:list="data.recommend" :loading="data.loading" mode="recommend" />
-                <Loading v-if="data.loading" :is-full-screen="false" />
+                <Loading :is-full-screen="false" v-if="data.loading" />
                 <NoMore v-else />
               </Scroll>
             </div>
@@ -386,36 +372,36 @@
       <BaseFooter v-bind:init-tab="4" />
     </div>
 
-    <div v-show="data.searching" class="searching">
+    <div class="searching" v-show="data.searching">
       <Search
         v-model="data.searchKey"
-        :isShowRightText="true"
         right-text="取消"
         right-text-color="white"
         @notice="data.searching = false"
+        :isShowRightText="true"
       />
       <div class="more-chat">
         <template v-if="data.searchKey">
-          <div v-if="searchFriendsAll.length" class="sub-title">
+          <div class="sub-title" v-if="searchFriendsAll.length">
             <span>联系人</span>
             <div
-              v-if="searchFriendsAll.length > 3"
               class="right"
+              v-if="searchFriendsAll.length > 3"
               @click="nav('/message/more-search', { key: data.searchKey })"
             >
               <span>更多联系人</span>
-              <dy-back direction="right" img="back" mode="gray" scale=".6" />
+              <dy-back mode="gray" img="back" scale=".6" direction="right" />
             </div>
           </div>
           <People
             v-for="item in searchFriendsAll.slice(0, 3)"
             :key="item.id"
-            :people="item"
-            :searchKey="data.searchKey"
             mode="search"
+            :searchKey="data.searchKey"
+            :people="item"
           />
           <div class="goto-search-page" @click="nav('/home/search', { key: data.searchKey })">
-            <img alt="" class="icon" src="../../assets/img/icon/search-light.png" />
+            <img class="icon" src="../../assets/img/icon/search-light.png" alt="" />
             <div class="right">
               <div class="left">
                 <span
@@ -423,7 +409,7 @@
                 >
                 <span class="second-text-color f12">视频、用户、音乐、话题、地点等</span>
               </div>
-              <dy-back direction="right" img="back" mode="gray" scale=".7" />
+              <dy-back mode="gray" img="back" direction="right" scale=".7" />
             </div>
           </div>
         </template>
@@ -436,7 +422,7 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import Search from '../../components/Search.vue'
 import FromBottomDialog from '../../components/dialog/FromBottomDialog.vue'
 import Check from '../../components/Check.vue'
@@ -523,7 +509,7 @@ async function loadRecommendData() {
   data.recommend = data.recommend.concat(temp)
 }
 </script>
-<style lang="less" scoped>
+<style scoped lang="less">
 @import '../../assets/less/index';
 
 #Message {

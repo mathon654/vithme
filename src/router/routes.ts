@@ -103,6 +103,7 @@ const routes: RouteRecordRaw[] = [
 
   // {path: '/message', component: Message},
   { path: '/message', component: () => import('@/pages/message/Message.vue') },
+  { path: '/message1', component: () => import('@/pages/message1/Message.vue') },
   {
     path: '/message/all',
     component: () => import('@/pages/message/AllMessage.vue')
@@ -224,11 +225,25 @@ const routes: RouteRecordRaw[] = [
     path: '/certificationAudit',
     component: () => import('@/pages/certificationAudit/index.vue')
   },
+  // 个人主页
+  {
+    path: '/homePage',
+    component: () => import('@/pages/homePage/index.vue')
+  },
+  // 会员
+  {
+    path: '/member',
+    component: () => import('@/pages/member/index.vue')
+  },
+  // 关于我们
+  {
+    path: '/aboutUs',
+    component: () => import('@/pages/aboutUs/index.vue')
+  },
   {
     path: '/swiperView',
     component: () => import('@/pages/swiperView/index.vue')
   },
-
   {
     path: '/oompleteRegistration',
     component: () => import('@/pages/oompleteRegistration/index.vue')
