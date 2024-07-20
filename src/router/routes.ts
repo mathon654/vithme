@@ -240,6 +240,17 @@ const routes: RouteRecordRaw[] = [
     path: '/aboutUs',
     component: () => import('@/pages/aboutUs/index.vue')
   },
+  // 我的预约
+  {
+    path: '/myAppointment',
+    component: () => import('@/pages/myAppointment/index.vue')
+  },
+  // 我的约会
+  {
+    path: '/myDate',
+    component: () => import('@/pages/myDate/index.vue')
+  },
+
   {
     path: '/swiperView',
     component: () => import('@/pages/swiperView/index.vue')
