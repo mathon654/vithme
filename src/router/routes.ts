@@ -250,6 +250,21 @@ const routes: RouteRecordRaw[] = [
     path: '/myDate',
     component: () => import('@/pages/myDate/index.vue')
   },
+  // 谁看过我
+  {
+    path: '/whoSeenMe',
+    component: () => import('@/pages/whoSeenMe/index.vue')
+  },
+  // 谁喜欢我
+  {
+    path: '/whoSeenMe',
+    component: () => import('@/pages/whoLikeMe/index.vue')
+  },
+  // 收到打赏
+  {
+    path: '/receiveReward',
+    component: () => import('@/pages/receiveReward/index.vue')
+  },
 
   {
     path: '/swiperView',
