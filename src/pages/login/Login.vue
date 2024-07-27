@@ -1,13 +1,23 @@
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { getCountry } from '@/api/user'
 
 const router = useRouter()
-const tel = ref()
 
 const goRegister = () => {
   router.push('/register')
 }
+const getCodeList = () => {
+  console.log('getCodeList')
+  getCountry().then((res) => {
+    console.log('res', res)
+  })
+}
+onMounted(() => {
+  console.log('login')
+  getCodeList()
+})
 </script>
 <template>
   <div class="bg">
@@ -54,7 +64,6 @@ const goRegister = () => {
 }
 
 .area {
-  height: 26px;
   font-size: 14px;
   color: #cdc7c4;
   font-weight: 500;

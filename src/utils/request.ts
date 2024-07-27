@@ -82,7 +82,7 @@ axiosInstance.interceptors.request.use(
       hrApp: 1,
       h5: 1
     }
-    console.log('commonParams', commonParams, config.method)
+    console.log('commonParams', commonParams, config)
 
     // 如果请求是GET方法，参数添加到params中；如果是POST方法，参数添加到data中
     if (config.method === 'get') {
