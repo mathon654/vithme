@@ -73,6 +73,7 @@ function back() {
     box-sizing: border-box;
     border-bottom: 1px solid #cccccc11;
     position: relative;
+    background-color: #000;
 
     .left {
       position: absolute;

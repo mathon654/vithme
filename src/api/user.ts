@@ -1,4 +1,5 @@
 import { request } from '@/utils/request'
+import request1 from '@/utils/api'
 
 export function userinfo(params?: any, data?: any) {
   return request({ url: '/user/userinfo', method: 'get', params, data })
@@ -30,4 +31,13 @@ export function recommendedShop(params?: any, data?: any) {
 
 export function getCountry(params?: any, data?: any) {
   return request({ url: '/login/getAreaCode', method: 'get', params, data })
+}
+export function getPhoneCode(params?: any, data?: any) {
+  return request1({ url: '/login/getCode.do', method: 'get', params, data })
+}
+export function checkLogin(params?: any, data?: any) {
+  return request1({ url: '/login/checkReg.do', method: 'get', params, data })
+}
+export function gotoLogin(params?: any, data?: any) {
+  return request1({ url: '/login/signIn.do', method: 'get', params, data })
 }

@@ -63,38 +63,38 @@ export const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (config) => {
     // 设置公共参数
-    const timestamp = getTimestamp().toString()
-    const nonce = getNonce()
-    const accessToken = 'your-access-token' // 在实际项目中需要动态获取
-    const deviceNo = 'your-device-no' // 在实际项目中需要动态获取
-    const userId = 'your-user-id' // 在实际项目中需要动态获取
-
-    const commonParams = {
-      noAuthCheck: 1,
-      version: '16.0.2',
-      deviceNo,
-      timestamp,
-      nonce,
-      terminal: 2,
-      accessToken,
-      signature: getSignature(accessToken, '16.0.2', deviceNo, timestamp, nonce),
-      userId,
-      hrApp: 1,
-      h5: 1
-    }
-    console.log('commonParams', commonParams, config)
-
-    // 如果请求是GET方法，参数添加到params中；如果是POST方法，参数添加到data中
-    if (config.method === 'get') {
-      config.params = { ...config.params, ...commonParams }
-    } else {
-      config.data = { ...config.data, ...commonParams }
-    }
-
-    // 设置默认Content-Type
-    if (!config.headers['Content-Type']) {
-      config.headers['Content-Type'] = 'application/json'
-    }
+    // const timestamp = getTimestamp().toString()
+    // const nonce = getNonce()
+    // const accessToken = 'your-access-token' // 在实际项目中需要动态获取
+    // const deviceNo = 'your-device-no' // 在实际项目中需要动态获取
+    // const userId = 'your-user-id' // 在实际项目中需要动态获取
+    //
+    // const commonParams = {
+    //   noAuthCheck: 1,
+    //   version: '16.0.2',
+    //   deviceNo,
+    //   timestamp,
+    //   nonce,
+    //   terminal: 2,
+    //   accessToken,
+    //   signature: getSignature(accessToken, '16.0.2', deviceNo, timestamp, nonce),
+    //   userId,
+    //   hrApp: 1,
+    //   h5: 1
+    // }
+    // console.log('commonParams', config)
+    //
+    // // 如果请求是GET方法，参数添加到params中；如果是POST方法，参数添加到data中
+    // if (config.method === 'get') {
+    //   config.params = { ...config.params, ...commonParams }
+    // } else {
+    //   config.data = { ...config.data, ...commonParams }
+    // }
+    //
+    // // 设置默认Content-Type
+    // if (!config.headers['Content-Type']) {
+    //   config.headers['Content-Type'] = 'application/json'
+    // }
 
     return config
   },
@@ -106,6 +106,7 @@ axiosInstance.interceptors.request.use(
 // response拦截器
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => {
+    console.log('response', response)
     const { data } = response
     if (data === undefined || data === null || data === '') {
       _notice('请求失败，请稍后重试！')
@@ -141,6 +142,8 @@ axiosInstance.interceptors.response.use(
     }
   },
   (error: AxiosError) => {
+    console.log('error', error)
+
     if (error.response === undefined) {
       _notice('服务器响应超时')
       return { success: false, code: 500, msg: '服务器响应超时', data: [] }

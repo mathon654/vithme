@@ -188,7 +188,7 @@ const routes: RouteRecordRaw[] = [
   // 注册
   {
     path: '/register',
-    component: () => import('@/pages/register/index.vue')
+    component: () => import('@/pages/login/Register.vue')
   },
   // 完善资料
   {
@@ -278,6 +278,7 @@ const routes: RouteRecordRaw[] = [
   // {path: '/login', component: Login},
   // 登陆
   { path: '/login', component: () => import('@/pages/login/Login.vue') },
+  { path: '/countrySelect', component: () => import('@/pages/login/CountrySelect.vue') },
   {
     path: '/login/other',
     component: () => import('@/pages/login/OtherLogin.vue')

@@ -1,31 +1,41 @@
 <script setup>
-import { onMounted, ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { getCountry } from '@/api/user'
-
+import { ref, watch } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 const router = useRouter()
+const route = useRoute()
+import { checkLogin } from '@/api/user'
 
 const goRegister = () => {
-  router.push('/register')
-}
-const getCodeList = () => {
-  console.log('getCodeList')
-  getCountry().then((res) => {
+  checkLogin({ code: area.value, mobile: phone.value }).then((res) => {
     console.log('res', res)
+    const { regUid } = res
+    router.push({ path: '/register', query: { area: area.value, phone: phone.value, regUid } })
   })
+  // router.push({ path: '/register', query: { area:area.value,phone:phone.value  } });
 }
-onMounted(() => {
-  console.log('login')
-  getCodeList()
-})
+
+const gotoSelect = () => {
+  router.replace('/countrySelect')
+}
+const area = ref('86')
+const phone = ref('')
+watch(
+  () => route.query?.mobileArea,
+  (newCountry) => {
+    if (newCountry) {
+      area.value = newCountry
+    }
+  },
+  { immediate: true }
+)
 </script>
 <template>
   <div class="bg">
     <div class="label">DEMO</div>
     <div class="phone">
-      <div class="area">+86</div>
+      <div @click="gotoSelect" class="area">+{{ area }}</div>
       <div class="phoneNumber">
-        <input type="text" class="phoneInput" />
+        <input type="text" v-model="phone" class="phoneInput" />
       </div>
     </div>
     <div class="nextStep" @click="goRegister">下一步</div>

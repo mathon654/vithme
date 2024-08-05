@@ -6,6 +6,7 @@ import { Plugin as importToCDN } from 'vite-plugin-cdn-import'
 import { fileURLToPath, URL } from 'node:url'
 import { getLastCommit } from 'git-last-commit'
 import VueMacros from 'unplugin-vue-macros/vite'
+import styleImport, { VantResolve } from 'vite-plugin-style-import' // 引入 style-import 插件
 import { resolve } from 'path'
 
 const lifecycle = process.env.npm_lifecycle_event
@@ -32,6 +33,8 @@ export default defineConfig((): Promise<UserConfig> => {
             //   exclude: [/node_modules/, /jQuery\.js/]
             // }
           }),
+          // 引入 style-import 插件，并配置 Vant
+          VantResolve(),
           // Vue(),
           // VueJsx(),
           lifecycle === 'report' ? (visualizer({ open: false }) as any as PluginOption) : null,
@@ -176,7 +179,7 @@ export default defineConfig((): Promise<UserConfig> => {
         },
         preview: {
           port: 5555
-        },
+        }
       })
     })
   })

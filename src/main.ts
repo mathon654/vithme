@@ -8,6 +8,7 @@ import VueLazyload from '@jambonn/vue-lazyload'
 import { createPinia } from 'pinia'
 import { useClick } from '@/utils/hooks/useClick'
 import bus, { EVENT_KEY } from '@/utils/bus'
+import 'vant/lib/index.css'
 
 window.isMoved = false
 window.isMuted = true

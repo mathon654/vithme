@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 import { computed, reactive, ref } from 'vue'
 import MobileSelect from '@/components/mobile-select/mobile-select'
-import { _hideLoading, _showLoading, _showSelectDialog, _sleep } from '@/utils'
-import { useRouter } from 'vue-router'
+import { _hideLoading, _notice, _showLoading, _showSelectDialog, _sleep } from '@/utils'
+import { useRoute, useRouter } from 'vue-router'
+import { gotoLogin } from '@/api/user'
+const route = useRoute()
 
 const router = useRouter()
 
@@ -71,12 +73,47 @@ function showBirthdayDialog() {
 }
 
 const goStep = () => {
-  router.push('/getInvitationCode')
+  // if (!userName.value) {
+  //   _notice('请输入姓名')
+  //   return
+  // }
+  // if (!sexValue.value) {
+  //   _notice('请选择性别')
+  //   return
+  // }
+  // if (birthday.value === '请选择您的性别（选择后无法修改）') {
+  //   _notice('请选择生日')
+  //   return
+  // }
+  gotoLogin({
+    // mobileChkCode: route.query?.mobileChkCode,
+    mobileChkCode: '999999',
+    // mobile: route.query?.mobile,
+    mobile: '18212345678',
+    code: route.query?.area,
+    regUid: route.query?.regUid,
+    nickName: 'userName',
+    birthday: '1990-01-01',
+    sex: '1'
+  }).then((res) => {
+    console.log('res', res)
+    const { hostUser } = res
+    if (hostUser) {
+      localStorage.set('hostUser', hostUser)
+    }
+  })
+
+  // router.push('/getInvitationCode')
 }
 </script>
 
 <template>
   <div>
+    <BaseHeader>
+      <template v-slot:center>
+        <span class="f16">身份认证</span>
+      </template>
+    </BaseHeader>
     <div class="flexStyle">
       <img class="imgWidth" src="@/assets/svg/login_zhuangshi1.png" />
       <div class="label">只差1步，完善资料</div>
@@ -86,18 +123,13 @@ const goStep = () => {
       <input
         v-model="userName"
         placeholder="  请输入您的姓名或昵称"
-        style="
-          background: rgba(255, 255, 255, 0);
-          width: 100%;
-          height: 39px;
-          color: #57595c;
-          border: none;
-        "
+        class="text-white pl-[16rem] w-[100%] h-[100%] bg-transparent border-none"
         type="text"
       />
     </div>
-    <div class="userName" style="margin-top: 10px" @click="showSexDialog">
+    <div class="userName mt-[10rem]" @click="showSexDialog">
       <div
+        class="pl-[10rem]"
         style="
           background: rgba(255, 255, 255, 0);
           width: 100%;
